@@ -13,4 +13,12 @@ export interface Character {
   name: string;
   id: number;
   image: string;
+  status: string;
+  species: string;
 }
+
+export type Characters = Character[];
+
+export type CharacterState = {
+  results: Characters;
+};

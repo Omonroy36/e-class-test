@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import characterReducer from "./reducer/characterReducer";
 import favoriteReducer from "./reducer/favoriteReducer";
 
 export const store = configureStore({
   reducer: {
     favorite: favoriteReducer,
+    character: characterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -3,14 +3,13 @@ import {
   Avatar,
   Box,
   Center,
-  Text,
   Stack,
   Button,
-  Link,
   Badge,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Character } from "../utils/types";
+import { Character } from "../../utils/types";
+import { useNavigate } from "react-router-dom";
 
 type CardProps = {
   onClick: VoidFunction;
@@ -18,10 +17,13 @@ type CardProps = {
 };
 
 export default function Card({ onClick, item }: CardProps) {
+  const navigate = useNavigate();
   return (
     <Center py={6}>
       <Box
+        onClick={() => navigate(`/details/${item?.id}`)}
         maxW={"320px"}
+        cursor="pointer"
         w={"full"}
         bg={useColorModeValue("white", "gray.500")}
         boxShadow={"2xl"}
@@ -38,7 +40,7 @@ export default function Card({ onClick, item }: CardProps) {
             content: '""',
             w: 4,
             h: 4,
-            bg: "green.300",
+            bg: item?.status === "Alive" ? "green.300" : "red.300",
             border: "2px solid white",
             rounded: "full",
             pos: "absolute",
@@ -49,21 +51,6 @@ export default function Card({ onClick, item }: CardProps) {
         <Heading fontSize={"2xl"} fontFamily={"body"}>
           {item?.name}
         </Heading>
-        <Text fontWeight={600} color={"gray.500"} mb={4}>
-          @lindsey_jam3s
-        </Text>
-        <Text
-          textAlign={"center"}
-          color={useColorModeValue("gray.700", "gray.400")}
-          px={3}
-        >
-          Actress, musician, songwriter and artist. PM for work inquires or{" "}
-          <Link href={"#"} color={"blue.400"}>
-            #tag
-          </Link>{" "}
-          me in your posts
-        </Text>
-
         <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
           <Badge
             px={2}
@@ -71,23 +58,7 @@ export default function Card({ onClick, item }: CardProps) {
             bg={useColorModeValue("gray.50", "gray.800")}
             fontWeight={"400"}
           >
-            #art
-          </Badge>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            #photography
-          </Badge>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            #music
+            {item?.species}
           </Badge>
         </Stack>
         <Stack mt={8} alignItems="center" direction={"row"} spacing={4}>

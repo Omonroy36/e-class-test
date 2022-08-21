@@ -7,18 +7,16 @@ import {
   Button,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { GrClose, GrMenu } from "react-icons/gr";
 import { BsFillHeartFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const navigate = useNavigate();
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -31,7 +29,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>
+            <Box onClick={() => navigate("/")} cursor={"pointer"}>
               <Avatar
                 src={
                   "https://w7.pngwing.com/pngs/277/446/png-transparent-rick-and-morty-illustratrion-rick-sanchez-morty-smith-rick-and-morty-season-1-television-show-youtube-rick-and-morty-television-logo-computer-wallpaper.png"
@@ -54,12 +52,6 @@ export default function Navbar() {
                   icon={<BsFillHeartFill fontSize="1.5rem" />}
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
             </Menu>
           </Flex>
         </Flex>
