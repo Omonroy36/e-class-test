@@ -8,3 +8,9 @@ export type Favorites = Favorite[];
 export type FavoriteState = {
   favorites: Favorites;
 };
+
+export interface Character {
+  name: string;
+  id: number;
+  image: string;
+}
