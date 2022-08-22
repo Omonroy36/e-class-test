@@ -1,12 +1,15 @@
 export type Favorite = {
   name: string;
   id: number;
+  status: string;
+  image: string;
 };
 
 export type Favorites = Favorite[];
 
 export type FavoriteState = {
-  favorites: Favorites;
+  results: Favorites;
+  messageError: string;
 };
 
 export interface Character {

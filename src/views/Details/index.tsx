@@ -30,6 +30,7 @@ export default function Details() {
   const { loading, error, data } = useQuery(GET_CHARACTER_BY_ID, {
     variables: { id },
   });
+  const created = new Date(data?.character.created);
 
   if (error) {
     return (
@@ -165,7 +166,7 @@ export default function Details() {
                       Created:
                     </Text>{" "}
                     <Text px={2} py={1} bg="gray.400" fontWeight={"600"}>
-                      {data?.character.created}
+                      {created.toLocaleDateString()}
                     </Text>
                   </ListItem>
                 </List>

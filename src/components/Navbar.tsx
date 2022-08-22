@@ -5,8 +5,6 @@ import {
   HStack,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
   useDisclosure,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -39,20 +37,20 @@ export default function Navbar() {
             </Box>
           </HStack>
           <Flex alignItems={"center"}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Avatar
-                  bg="red.500"
-                  icon={<BsFillHeartFill fontSize="1.5rem" />}
-                />
-              </MenuButton>
-            </Menu>
+            Favorites
+            <Button
+              ms="1"
+              onClick={() => navigate("/favorites")}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
+            >
+              <Avatar
+                bg="red.500"
+                icon={<BsFillHeartFill fontSize="1.5rem" />}
+              />
+            </Button>
           </Flex>
         </Flex>
       </Box>

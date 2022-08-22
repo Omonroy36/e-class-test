@@ -13,9 +13,8 @@ const characterReducer = createSlice({
     setCharacters: (state, action: PayloadAction<Characters>) => {
       state.results = [...state.results, ...action.payload];
     },
-    getCharacters: (state, action: PayloadAction<Characters>) => {},
   },
 });
 
-export const { setCharacters, getCharacters } = characterReducer.actions;
+export const { setCharacters } = characterReducer.actions;
 export default characterReducer.reducer;

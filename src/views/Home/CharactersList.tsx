@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
 import { Card, CardSkeleton } from "../../components/Card";
 import { GET_CHARACTERS, useQuery } from "../../apollo/queries";
-import { Character } from "../../utils/types";
-import { SimpleGrid, Alert, AlertIcon, Button, Box } from "@chakra-ui/react";
+import { Character, Favorite } from "../../utils/types";
+import {
+  SimpleGrid,
+  Alert,
+  AlertIcon,
+  Button,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import { setCharacters } from "../../redux/reducer/characterReducer";
+import { setFavorite } from "../../redux/reducer/favoriteReducer";
 
 export default function CharactersList() {
   const { loading, error, data, refetch } = useQuery(GET_CHARACTERS, {
@@ -13,6 +21,8 @@ export default function CharactersList() {
   });
   const dispatch = useDispatch();
   const character = useSelector((state: RootState) => state.character);
+  const favorite = useSelector((state: RootState) => state.favorite);
+  const toast = useToast();
 
   useEffect(() => {
     if (data) dispatch(setCharacters(data.characters.results));
@@ -23,6 +33,21 @@ export default function CharactersList() {
     if (next !== null) {
       refetch({ page: next });
     }
+  };
+
+  const onClickSetFavorite = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    item: Character
+  ) => {
+    //stop navigate event to occur when clicking on the button
+    e.stopPropagation();
+    const newFavorite: Favorite = {
+      id: item.id,
+      image: item.image,
+      status: item.status,
+      name: item.name,
+    };
+    dispatch(setFavorite(newFavorite));
   };
 
   if (error) {
@@ -44,7 +69,9 @@ export default function CharactersList() {
           : character.results.map((item: Character) => (
               <Card
                 key={item.name + item.id}
-                onClick={() => console.log(item)}
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  onClickSetFavorite(e, item)
+                }
                 item={item}
               />
             ))}

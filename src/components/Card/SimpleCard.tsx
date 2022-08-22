@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Heading,
   Avatar,
@@ -6,18 +5,23 @@ import {
   Center,
   Stack,
   Button,
-  Badge,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Character } from "../../utils/types";
+import { Character, Favorite } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
 
-type CardProps = {
+type SimpleCardProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  item: Character;
+  item: Character | Favorite;
 };
 
-export default function Card({ onClick, item }: CardProps) {
+const statusColor = {
+  Alive: "green.400",
+  Dead: "red.400",
+  Unknown: "gray.400",
+};
+
+export default function SimpleCard({ item, onClick }: SimpleCardProps) {
   const navigate = useNavigate();
   return (
     <Center py={6}>
@@ -41,7 +45,7 @@ export default function Card({ onClick, item }: CardProps) {
             content: '""',
             w: 4,
             h: 4,
-            bg: item?.status === "Alive" ? "green.300" : "red.300",
+            bg: statusColor[item?.status as keyof typeof statusColor],
             border: "2px solid white",
             rounded: "full",
             pos: "absolute",
@@ -52,16 +56,6 @@ export default function Card({ onClick, item }: CardProps) {
         <Heading fontSize={"2xl"} fontFamily={"body"}>
           {item?.name}
         </Heading>
-        <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-          <Badge
-            px={2}
-            py={1}
-            bg={useColorModeValue("gray.50", "gray.800")}
-            fontWeight={"400"}
-          >
-            {item?.species}
-          </Badge>
-        </Stack>
         <Stack mt={8} alignItems="center" direction={"row"} spacing={4}>
           <Button
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClick(e)}
@@ -80,7 +74,7 @@ export default function Card({ onClick, item }: CardProps) {
               bg: "red.500",
             }}
           >
-            Follow
+            Unfollow
           </Button>
         </Stack>
       </Box>
