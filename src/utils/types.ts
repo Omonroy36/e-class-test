@@ -9,7 +9,6 @@ export type Favorites = Favorite[];
 
 export type FavoriteState = {
   results: Favorites;
-  messageError: string;
 };
 
 export interface Character {

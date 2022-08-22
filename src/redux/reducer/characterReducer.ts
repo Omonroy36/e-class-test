@@ -11,10 +11,13 @@ const characterReducer = createSlice({
   initialState,
   reducers: {
     setCharacters: (state, action: PayloadAction<Characters>) => {
+      state.results = [...action.payload];
+    },
+    updateCharacters: (state, action: PayloadAction<Characters>) => {
       state.results = [...state.results, ...action.payload];
     },
   },
 });
 
-export const { setCharacters } = characterReducer.actions;
+export const { setCharacters, updateCharacters } = characterReducer.actions;
 export default characterReducer.reducer;
