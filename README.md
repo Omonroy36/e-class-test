@@ -2,6 +2,10 @@
 
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
 
+### App en vivo 
+
+En este link podrás ver la app en vivo [Rick and Morty Series](https://e-class-test-lilac.vercel.app/).
+
 ## Scripts disponibles
 
 Puedes correr en la terminal:
