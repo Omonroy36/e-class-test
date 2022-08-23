@@ -33,4 +33,13 @@ export type CharacterDetails = {
   gender: string;
   species: string;
   created: string;
+  location: CharacterLocation;
+  origin: CharacterOrigin;
+};
+
+export type CharacterLocation = {
+  name: string;
+};
+export type CharacterOrigin = {
+  name: string;
 };

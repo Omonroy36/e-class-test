@@ -1,12 +1,10 @@
 import { useEffect } from "react";
-import { Box, Container, Heading, Stack, Button } from "@chakra-ui/react";
+import { Box, Container, Heading, Stack, Button, Flex } from "@chakra-ui/react";
 import CharactersList from "./CharactersList";
 import { GET_CHARACTERS, useQuery } from "../../apollo/queries";
 import { useDispatch } from "react-redux";
-import {
-  setCharacters,
-  updateCharacters,
-} from "../../redux/reducer/characterReducer";
+import { setCharacters } from "../../redux/reducer/characterReducer";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -14,16 +12,19 @@ export default function Home() {
     variables: { page: 1 },
   });
 
-  const onClickLoadMore = () => {
+  const onClickNextPage = () => {
     const next = data.characters.info.next;
     if (next !== null) {
       refetch({ page: next });
     }
   };
 
-  useEffect(() => {
-    if (data) dispatch(updateCharacters(data.characters.results));
-  }, [data]);
+  const onClickPreviousPage = () => {
+    const previous = data.characters.info.prev;
+    if (previous !== null) {
+      refetch({ page: previous });
+    }
+  };
 
   useEffect(() => {
     if (data) dispatch(setCharacters(data.characters.results));
@@ -35,30 +36,74 @@ export default function Home() {
         <Heading color={"gray.300"} fontSize={"9xl"}>
           Rick and Morty Series
         </Heading>
+        <Flex justifyContent={"space-between"}>
+          <Box textAlign={"center"}>
+            <Button
+              leftIcon={<GrLinkPrevious />}
+              onClick={onClickPreviousPage}
+              mt={2}
+              mb={2}
+              fontSize={"sm"}
+              rounded={"full"}
+              bg={"red.400"}
+              color={"white"}
+              disabled={!data?.characters.info.prev}
+            >
+              Previous
+            </Button>
+          </Box>
+          <Box textAlign={"center"}>
+            <Button
+              rightIcon={<GrLinkNext />}
+              onClick={onClickNextPage}
+              mt={2}
+              mb={2}
+              fontSize={"sm"}
+              rounded={"full"}
+              bg={"red.400"}
+              color={"white"}
+              disabled={!data?.characters.info.next}
+            >
+              Next
+            </Button>
+          </Box>
+        </Flex>
       </Stack>
       <Container maxW={"6xl"} mt={10}>
         <CharactersList isLoading={loading} isError={error} />
+      </Container>
+      <Flex justifyContent={"space-between"}>
         <Box textAlign={"center"}>
           <Button
-            onClick={onClickLoadMore}
+            leftIcon={<GrLinkPrevious />}
+            onClick={onClickPreviousPage}
             mt={2}
             mb={2}
-            flex={1}
             fontSize={"sm"}
             rounded={"full"}
             bg={"red.400"}
             color={"white"}
-            _hover={{
-              bg: "red.500",
-            }}
-            _focus={{
-              bg: "red.600",
-            }}
+            disabled={!data?.characters.info.prev}
           >
-            Load More
+            Previous
           </Button>
         </Box>
-      </Container>
+        <Box textAlign={"center"}>
+          <Button
+            rightIcon={<GrLinkNext />}
+            onClick={onClickNextPage}
+            mt={2}
+            mb={2}
+            fontSize={"sm"}
+            rounded={"full"}
+            bg={"red.400"}
+            color={"white"}
+            disabled={!data?.characters.info.next}
+          >
+            Next
+          </Button>
+        </Box>
+      </Flex>
     </Box>
   );
 }
