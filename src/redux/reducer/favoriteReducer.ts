@@ -3,7 +3,6 @@ import { Favorite, FavoriteState } from "../../utils/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const savedFavorites = localStorage.getItem("favorites") || "";
-console.log();
 
 const initialState: FavoriteState = {
   results: Array.isArray(JSON.parse(savedFavorites))
