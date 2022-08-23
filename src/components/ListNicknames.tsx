@@ -7,7 +7,7 @@ type ListNicknamesProps = {
 };
 
 const orderBy = {
-  DESC: function (a: any, b: any) {
+  DESC: function (a: string, b: string) {
     if (a > b) {
       return -1;
     }
@@ -16,8 +16,8 @@ const orderBy = {
     }
     return 0;
   },
-  ASC: function (a: any, b: any) {
-    return a - b;
+  ASC: function (a: string, b: string) {
+    return parseInt(a) - parseInt(b);
   },
 };
 

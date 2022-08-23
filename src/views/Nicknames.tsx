@@ -10,7 +10,6 @@ export default function Nicknames() {
   return (
     <Container maxW={"7xl"}>
       <Select
-        variant={"filled"}
         color="white"
         placeholder="Select option"
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
