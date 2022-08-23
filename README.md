@@ -25,10 +25,10 @@ Esto resuelve el primer ejercicio de la prueba.
 
 ### Paginas 
 
-Podrás ver la lista de personajes en la ruta relativa `/`
-Para ver un personaje y sus detalles `/details/:characaterId`
-Podrás ver tus favoritos en `/favorites`
-Podrás ver el componente `ListNicknames` en acción bajo la ruta `/nickNames`
+- Podrás ver la lista de personajes en la ruta relativa `/`  
+- Para ver un personaje y sus detalles `/details/:characaterId` 
+- Podrás ver tus favoritos en `/favorites` 
+- Podrás ver el componente `ListNicknames` en acción bajo la ruta `/nickNames` 
 
 ### Persistencia de datos Favorites
 
