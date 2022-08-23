@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Favorite, FavoriteState } from "../../utils/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-const savedFavorites = localStorage.getItem("favorites") || "";
+const savedFavorites = localStorage.getItem("favorites") || "[]";
+const parsedFavorites = JSON.parse(savedFavorites);
+console.log(parsedFavorites);
 
 const initialState: FavoriteState = {
   results: Array.isArray(JSON.parse(savedFavorites))
