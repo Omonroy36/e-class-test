@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Home from "./views/Home";
 import Details from "./views/Details";
 import Favorites from "./views/Favorites";
+import Nicknames from "./views/Nicknames";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/nickNames" element={<Nicknames />} />
         </Route>
       </Routes>
     </BrowserRouter>
