@@ -1,8 +1,6 @@
 name: Docker
 
-on:
-  push:
-    tags: ["v*.*.*"]
+on:[push]
 
 env:
   IMAGE_NAME: eclass-front
