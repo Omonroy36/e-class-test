@@ -1,6 +1,9 @@
-name: Docker
+name: Deploy to Azure Container Registry
 
-on:[push]
+on:
+  push:
+    branches:
+      - main
 
 env:
   IMAGE_NAME: eclass-front
